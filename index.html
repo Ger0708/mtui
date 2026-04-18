@@ -1,29 +1,145 @@
 <!DOCTYPE html>
-<html>
+<html lang="zh-TW">
 <head>
     <meta charset="utf-8">
-    <title>正在進入系統...</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MTUI 音樂推推 | 安全跳轉中</title>
     <style>
-        body { font-family: sans-serif; text-align: center; padding-top: 100px; background: #f4f4f9; }
-        .btn { padding: 10px 20px; background: #ff4b4b; color: white; border: none; border-radius: 5px; cursor: pointer; text-decoration: none; }
+        :root {
+            --primary-color: #1DB954; /* 經典音樂綠 */
+            --bg-color: #0e1117;
+            --card-bg: #161b22;
+            --text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2.5rem;
+            background: var(--card-bg);
+            border-radius: 20px;
+            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid #30363d;
+        }
+
+        /* 音樂頻譜動畫 */
+        .loader {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            height: 40px;
+            gap: 5px;
+            margin-bottom: 25px;
+        }
+
+        .bar {
+            width: 5px;
+            height: 10px;
+            background: var(--primary-color);
+            border-radius: 10px;
+            animation: bounce 1s ease-in-out infinite;
+        }
+
+        .bar:nth-child(2) { animation-delay: 0.1s; height: 25px; }
+        .bar:nth-child(3) { animation-delay: 0.2s; height: 35px; }
+        .bar:nth-child(4) { animation-delay: 0.3s; height: 20px; }
+        .bar:nth-child(5) { animation-delay: 0.4s; height: 30px; }
+
+        @keyframes bounce {
+            0%, 100% { transform: scaleY(1); }
+            50% { transform: scaleY(1.5); }
+        }
+
+        h2 { font-size: 1.5rem; margin-bottom: 0.5rem; color: var(--primary-color); }
+        h3 { font-size: 1rem; font-weight: 400; color: #8b949e; margin-bottom: 2rem; }
+        
+        .info-box {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.9rem;
+            line-height: 1.6;
+            color: #c9d1d9;
+            margin-bottom: 2rem;
+            text-align: left;
+            border-left: 4px solid var(--primary-color);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary-color);
+            color: white;
+            padding: 12px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            box-shadow: 0 4px 15px rgba(29, 185, 84, 0.3);
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            background: #1ed760;
+            box-shadow: 0 6px 20px rgba(29, 185, 84, 0.4);
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 0.75rem;
+            color: #484f58;
+        }
     </style>
 </head>
 <body>
-    <h2>🚀 正在安全連接至 mtui 音樂推推 (等待大約三秒)</h2>
-    <h3>➡️ 稍後會有防攻擊驗證 請點選 view site</h3>
-    <p>如果頁面沒有自動跳轉，請點擊下方按鈕</p>
-    
-    <form id="bypass-form" action="https://nevaeh-caulocarpous-chicly.ngrok-free.dev " method="GET">
-        <input type="hidden" name="ngrok-skip-browser-warning" value="true">
-        <button type="submit" class="btn">手動進入系統</button>
-    </form>
+
+    <div class="container">
+        <div class="loader">
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+            <div class="bar"></div>
+        </div>
+
+        <h2>MTUI 音樂推推</h2>
+        <h3>系統環境初始化中...</h3>
+
+        <div class="info-box">
+            🛡️ <b>安全提示：</b><br>
+            稍後進入若看到 ngrok 驗證頁面，請點擊藍色按鈕 <b>「Visit Site」</b> 即可安全進入系統。
+        </div>
+        
+        <form id="bypass-form" action="https://nevaeh-caulocarpous-chicly.ngrok-free.dev" method="GET">
+            <input type="hidden" name="ngrok-skip-browser-warning" value="true">
+            <button type="submit" class="btn">立即進入系統</button>
+        </form>
+
+        <div class="footer">
+            Secure Tunnel Powered by mtui & ngrok
+        </div>
+    </div>
 
     <script>
-        // 自動提交表單
         window.onload = function() {
+            // 3秒後自動提交
             setTimeout(() => {
                 document.getElementById('bypass-form').submit();
-            }, 3000); // 延遲一秒確保載入
+            }, 3000);
         };
     </script>
 </body>
