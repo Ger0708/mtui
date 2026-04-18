@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>正在進入音樂系統...</title>
+    <script>
+        // 這是 ngrok 給你的那個固定網域
+        const NGROK_URL = "https://你的網域.ngrok-free.app"; 
+
+        async function enterApp() {
+            try {
+                // 發送特殊的 Header 給 ngrok，這會在瀏覽器存入 Cookie
+                await fetch(NGROK_URL, {
+                    mode: 'no-cors',
+                    headers: { "ngrok-skip-browser-warning": "true" }
+                });
+                // 開通後直接跳轉
+                window.location.href = NGROK_URL;
+            } catch (e) {
+                window.location.href = NGROK_URL;
+            }
+        }
+        window.onload = enterApp;
+    </script>
+</head>
+<body style="font-family: sans-serif; text-align: center; padding-top: 50px;">
+    <h2>正在建立加密連線...</h2>
+    <p>如果沒有自動跳轉，請 <a href="javascript:enterApp()">點擊此處</a></p>
+</body>
+</html>
